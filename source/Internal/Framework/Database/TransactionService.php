@@ -14,16 +14,16 @@ use Doctrine\DBAL\Connection;
 class TransactionService implements TransactionServiceInterface
 {
     /**
-     * @var Connection
+     * @var ConnectionProviderInterface
      */
-    private $connection;
+    private $connectionProvider;
 
     /**
-     * @param Connection $connection
+     * @param ConnectionProviderInterface $connectionProvider
      */
-    public function __construct(Connection $connection)
+    public function __construct(ConnectionProviderInterface $connectionProvider)
     {
-        $this->connection = $connection;
+        $this->connectionProvider = $connectionProvider;
     }
 
     /**
@@ -31,7 +31,7 @@ class TransactionService implements TransactionServiceInterface
      */
     public function begin()
     {
-        $this->connection->beginTransaction();
+        $this->connectionProvider->get()->beginTransaction();
     }
 
     /**
@@ -39,7 +39,7 @@ class TransactionService implements TransactionServiceInterface
      */
     public function commit()
     {
-        $this->connection->commit();
+        $this->connectionProvider->get()->commit();
     }
 
     /**
@@ -47,6 +47,6 @@ class TransactionService implements TransactionServiceInterface
      */
     public function rollback()
     {
-        $this->connection->rollBack();
+        $this->connectionProvider->get()->rollBack();
     }
 }
