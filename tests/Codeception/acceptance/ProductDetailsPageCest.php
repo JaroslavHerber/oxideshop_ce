@@ -56,9 +56,9 @@ class ProductDetailsPageCest
             ->checkIfProductIsNotBuyable();
 
         //select a variant of the product
-        $detailsPage = $detailsPage->selectVariant(2, 'white')
+        $detailsPage = $detailsPage->selectVariant(1, 'S')
             ->checkIfProductIsNotBuyable()
-            ->selectVariant(1, 'S');
+            ->selectVariant(2, 'white');
 
         //assert product
         $productData3 = [
@@ -256,6 +256,25 @@ class ProductDetailsPageCest
         $detailsPage->sendPriceAlert('example_test@oxid-esales.dev', '99.99');
         $I->see(Translator::translate('PAGE_DETAILS_THANKYOUMESSAGE3').' 99,99 € '.Translator::translate('PAGE_DETAILS_THANKYOUMESSAGE4'));
         $I->see($productData['title']);
+    }
+
+    /**
+     * @group product
+     * @group priceAlarm
+     *
+     * @param AcceptanceTester $I
+     */
+    public function disableProductPriceAlert(AcceptanceTester $I)
+    {
+        $productNavigation = new ProductNavigation($I);
+        $I->wantToTest('product price alert functionality is disabled');
+
+        $productData = [
+            'id' => '1000',
+            'title' => 'Test product 0 [EN] šÄßüл',
+            'description' => 'Test product 0 short desc [EN] šÄßüл',
+            'price' => '50,00 € *'
+        ];
 
         //disabling price alert for product(1000)
         $I->updateInDatabase('oxarticles', ["oxblfixedprice" => 1], ["OXID" => '1000']);
