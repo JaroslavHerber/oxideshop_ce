@@ -84,13 +84,6 @@ class ExceptionHandler
             $loggerServiceFactory = new LoggerServiceFactory(new Context(Registry::getConfig()));
             $logger = $loggerServiceFactory->getLogger();
             $logger->error($exception);
-            try {
-                $loggerServiceFactory = new LoggerServiceFactory(new Context(Registry::getConfig()));
-                $logger = $loggerServiceFactory->getLogger();
-                $logger->error($this->getFormattedException($exception));
-            } catch (\Throwable $throwableWithoutPossibilityToWriteToLogFile) {
-                // It is not possible to log because e.g. the log file is not writable.
-            }
         }
 
         if ($this->_iDebug || defined('OXID_PHP_UNIT') || php_sapi_name() === 'cli') {
