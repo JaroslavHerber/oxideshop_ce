@@ -250,7 +250,7 @@ class ArticleList extends \OxidEsales\Eshop\Application\Controller\Admin\AdminLi
      */
     protected function buildSelectString($oListObject = null)
     {
-        $sQ = parent::buildSelectString($oListObject);
+        $sQ = parent::_buildSelectString($oListObject);
         if ($sQ) {
             $sTable = getViewName("oxarticles");
             $sQ .= " and $sTable.oxparentid = '' ";

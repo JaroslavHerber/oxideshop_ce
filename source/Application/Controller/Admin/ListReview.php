@@ -103,7 +103,7 @@ class ListReview extends \OxidEsales\Eshop\Application\Controller\Admin\ArticleL
      */
     protected function prepareWhereQuery($aWhere, $sSql)
     {
-        $sSql = parent::prepareWhereQuery($aWhere, $sSql);
+        $sSql = parent::_prepareWhereQuery($aWhere, $sSql);
 
         $sArtTable = getViewName('oxarticles', $this->_iEditLang);
         $sArtTitleField = "{$sArtTable}.oxtitle";

@@ -281,7 +281,7 @@ class MultiLanguageModel extends \OxidEsales\Eshop\Core\Model\BaseModel
     {
         //Tomas
         //TODO: this place could be optimized. please check what we can do.
-        $fields = parent::getNonCachedFieldNames($forceFullStructure);
+        $fields = parent::_getNonCachedFieldNames($forceFullStructure);
 
         if (!$this->_blEmployMultilanguage) {
             return $fields;
@@ -368,7 +368,7 @@ class MultiLanguageModel extends \OxidEsales\Eshop\Core\Model\BaseModel
      */
     protected function setUpdateSeoOnFieldChange($field)
     {
-        parent::setUpdateSeoOnFieldChange($this->getUpdateSqlFieldName($field));
+        parent::_setUpdateSeoOnFieldChange($this->getUpdateSqlFieldName($field));
     }
     /**
      * @deprecated use self::getUpdateFieldsForTable instead
@@ -497,7 +497,7 @@ class MultiLanguageModel extends \OxidEsales\Eshop\Core\Model\BaseModel
      */
     protected function update()
     {
-        $ret = parent::update();
+        $ret = parent::_update();
 
         if ($ret) {
             //also update multilang table if it is separate
@@ -566,7 +566,7 @@ class MultiLanguageModel extends \OxidEsales\Eshop\Core\Model\BaseModel
      */
     protected function insert()
     {
-        $result = parent::insert();
+        $result = parent::_insert();
 
         if ($result) {
             //also insert to multilang tables if it is separate
@@ -598,7 +598,7 @@ class MultiLanguageModel extends \OxidEsales\Eshop\Core\Model\BaseModel
     protected function getObjectViewName($table, $shopID = null)
     {
         if (!$this->_blEmployMultilanguage) {
-            return parent::getObjectViewName($table, $shopID);
+            return parent::_getObjectViewName($table, $shopID);
         }
 
         return getViewName($table, $this->getLanguage(), $shopID);
@@ -625,7 +625,7 @@ class MultiLanguageModel extends \OxidEsales\Eshop\Core\Model\BaseModel
     protected function getAllFields($returnSimple = false)
     {
         if ($this->_blEmployMultilanguage) {
-            return parent::getAllFields($returnSimple);
+            return parent::_getAllFields($returnSimple);
         } else {
             $viewName = $this->getViewName();
             if (!$viewName) {
@@ -659,7 +659,7 @@ class MultiLanguageModel extends \OxidEsales\Eshop\Core\Model\BaseModel
             return;
         }
 
-        return parent::addField($name, $status, $type, $length);
+        return parent::_addField($name, $status, $type, $length);
     }
     /**
      * @deprecated use self::canFieldBeNull instead
@@ -684,7 +684,7 @@ class MultiLanguageModel extends \OxidEsales\Eshop\Core\Model\BaseModel
     {
         $fieldName = preg_replace('/_\d{1,2}$/', '', $fieldName);
 
-        return parent::canFieldBeNull($fieldName);
+        return parent::_canFieldBeNull($fieldName);
     }
 
     /**

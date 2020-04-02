@@ -122,7 +122,7 @@ class DeliveryArticlesAjax extends \OxidEsales\Eshop\Application\Controller\Admi
         $aChosenArt = $this->_getActionIds('oxobject2delivery.oxid');
         // removing all
         if ($this->getConfig()->getRequestParameter('all')) {
-            $sQ = parent::addFilter("delete oxobject2delivery.* " . $this->_getQuery());
+            $sQ = parent::_addFilter("delete oxobject2delivery.* " . $this->_getQuery());
             \OxidEsales\Eshop\Core\DatabaseProvider::getDb()->Execute($sQ);
         } elseif (is_array($aChosenArt)) {
             $sQ = "delete from oxobject2delivery where oxobject2delivery.oxid in (" . implode(", ", \OxidEsales\Eshop\Core\DatabaseProvider::getDb()->quoteArray($aChosenArt)) . ") ";

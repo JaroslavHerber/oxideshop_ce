@@ -155,7 +155,7 @@ class OrderFile extends \OxidEsales\Eshop\Core\Model\BaseModel
             return $sFieldName;
         }
 
-        return parent::getFieldLongName($sFieldName);
+        return parent::_getFieldLongName($sFieldName);
     }
 
     /**

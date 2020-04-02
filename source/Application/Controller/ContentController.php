@@ -204,7 +204,7 @@ class ContentController extends \OxidEsales\Eshop\Application\Controller\Fronten
             $sMeta = $this->getContent()->oxcontents__oxtitle->value;
         }
 
-        return parent::prepareMetaDescription($sMeta, $iLength, $blDescTag);
+        return parent::_prepareMetaDescription($sMeta, $iLength, $blDescTag);
     }
     /**
      * @deprecated use self::prepareMetaKeyword instead
@@ -229,7 +229,7 @@ class ContentController extends \OxidEsales\Eshop\Application\Controller\Fronten
             $sKeywords = $this->getContent()->oxcontents__oxtitle->value;
         }
 
-        return parent::prepareMetaKeyword($sKeywords, $blRemoveDuplicatedWords);
+        return parent::_prepareMetaKeyword($sKeywords, $blRemoveDuplicatedWords);
     }
 
     /**

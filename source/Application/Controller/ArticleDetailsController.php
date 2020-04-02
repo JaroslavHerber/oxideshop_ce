@@ -397,7 +397,7 @@ class ArticleDetailsController extends \OxidEsales\Eshop\Application\Controller\
                 $keywords .= ", " . $searchKeys;
             }
 
-            $keywords = parent::prepareMetaKeyword($keywords, $removeDuplicatedWords);
+            $keywords = parent::_prepareMetaKeyword($keywords, $removeDuplicatedWords);
         }
 
         return $keywords;

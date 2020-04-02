@@ -170,7 +170,7 @@ class ArticleAccessoriesAjax extends \OxidEsales\Eshop\Application\Controller\Ad
         // adding
         if (\OxidEsales\Eshop\Core\Registry::getConfig()->getRequestParameter('all')) {
             $sArtTable = $this->_getViewName('oxarticles');
-            $aChosenArt = $this->_getAll(parent::addFilter("select $sArtTable.oxid " . $this->_getQuery()));
+            $aChosenArt = $this->_getAll(parent::_addFilter("select $sArtTable.oxid " . $this->_getQuery()));
         }
 
         if ($oArticle->load($soxId) && $soxId && $soxId != "-1" && is_array($aChosenArt)) {

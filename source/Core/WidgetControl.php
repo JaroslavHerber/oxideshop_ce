@@ -140,7 +140,7 @@ class WidgetControl extends \OxidEsales\Eshop\Core\ShopControl
             }
         }
 
-        $widgetViewObject = parent::initializeViewObject($class, $function, $parameters, null);
+        $widgetViewObject = parent::_initializeViewObject($class, $function, $parameters, null);
 
         if (!is_a($widgetViewObject, WidgetController::class)) {
             /** @var ObjectException $exception */

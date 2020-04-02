@@ -160,7 +160,7 @@ class StartController extends \OxidEsales\Eshop\Application\Controller\FrontendC
             $sMeta = $oArt->oxarticles__oxtitle->value . ' - ' . $oDescField->value;
         }
 
-        return parent::prepareMetaDescription($sMeta, $iLength, $blDescTag);
+        return parent::_prepareMetaDescription($sMeta, $iLength, $blDescTag);
     }
     /**
      * @deprecated use self::prepareMetaKeyword instead
@@ -191,7 +191,7 @@ class StartController extends \OxidEsales\Eshop\Application\Controller\FrontendC
             $sKeywords = $oDescField->value;
         }
 
-        return parent::prepareMetaKeyword($sKeywords, $blRemoveDuplicatedWords);
+        return parent::_prepareMetaKeyword($sKeywords, $blRemoveDuplicatedWords);
     }
     /**
      * @deprecated use self::getLoadActionsParam instead

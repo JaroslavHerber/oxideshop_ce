@@ -91,7 +91,7 @@ class ArticleExtendAjax extends \OxidEsales\Eshop\Application\Controller\Admin\L
      */
     protected function getDataFields($sQ)
     {
-        $dataFields = parent::getDataFields($sQ);
+        $dataFields = parent::_getDataFields($sQ);
         if (\OxidEsales\Eshop\Core\Registry::getConfig()->getRequestParameter('oxid') && is_array($dataFields) && count($dataFields)) {
             // looking for smallest time value to mark record as main category ..
             $minimalPosition = null;

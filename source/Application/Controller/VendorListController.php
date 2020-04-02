@@ -211,7 +211,7 @@ class VendorListController extends \OxidEsales\Eshop\Application\Controller\Arti
                 $sUrl = $oVendor->getBaseSeoLink($iLang, $iPage);
             }
         } else {
-            $sUrl = \OxidEsales\Eshop\Application\Controller\FrontendController::addPageNrParam($sUrl, $iPage, $iLang);
+            $sUrl = \OxidEsales\Eshop\Application\Controller\FrontendController::_addPageNrParam($sUrl, $iPage, $iLang);
         }
 
         return $sUrl;
@@ -395,7 +395,7 @@ class VendorListController extends \OxidEsales\Eshop\Application\Controller\Arti
      */
     protected function prepareMetaKeyword($sKeywords, $blRemoveDuplicatedWords = true)
     {
-        return parent::collectMetaKeyword($sKeywords);
+        return parent::_collectMetaKeyword($sKeywords);
     }
     /**
      * @deprecated use self::prepareMetaDescription instead
@@ -417,7 +417,7 @@ class VendorListController extends \OxidEsales\Eshop\Application\Controller\Arti
      */
     protected function prepareMetaDescription($sMeta, $iLength = 1024, $blDescTag = false)
     {
-        return parent::collectMetaDescription($sMeta, $iLength, $blDescTag);
+        return parent::_collectMetaDescription($sMeta, $iLength, $blDescTag);
     }
     /**
      * @deprecated use self::getSubject instead

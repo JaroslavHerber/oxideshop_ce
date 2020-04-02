@@ -75,7 +75,7 @@ class ContentList extends \OxidEsales\Eshop\Application\Controller\Admin\AdminLi
      */
     protected function prepareWhereQuery($aWhere, $sqlFull)
     {
-        $sQ = parent::prepareWhereQuery($aWhere, $sqlFull);
+        $sQ = parent::_prepareWhereQuery($aWhere, $sqlFull);
         $sFolder = \OxidEsales\Eshop\Core\Registry::getConfig()->getRequestParameter('folder');
         $sViewName = getviewName("oxcontents");
 

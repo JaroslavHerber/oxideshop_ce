@@ -109,7 +109,7 @@ class ManufacturerMainAjax extends \OxidEsales\Eshop\Application\Controller\Admi
     {
         $config = $this->getConfig();
         $articleViewName = $this->_getViewName('oxarticles');
-        $query = parent::addFilter($query);
+        $query = parent::_addFilter($query);
 
         // display variants or not ?
         $query .= $config->getConfigParam('blVariantsSelection') ? ' group by ' . $articleViewName . '.oxid ' : '';

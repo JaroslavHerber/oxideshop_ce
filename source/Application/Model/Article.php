@@ -4864,7 +4864,7 @@ class Article extends \OxidEsales\Eshop\Core\Model\MultiLanguageModel implements
             $this->oxarticles__oxsubclass = new \OxidEsales\Eshop\Core\Field('oxarticle');
         }
 
-        return parent::insert();
+        return parent::_insert();
     }
     /**
      * @deprecated use self::update instead
@@ -4886,7 +4886,7 @@ class Article extends \OxidEsales\Eshop\Core\Model\MultiLanguageModel implements
 
         $this->_skipSaveFields();
 
-        return parent::update();
+        return parent::_update();
     }
     /**
      * @deprecated use self::deleteRecords instead

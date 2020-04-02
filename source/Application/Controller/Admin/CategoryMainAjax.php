@@ -111,7 +111,7 @@ class CategoryMainAjax extends \OxidEsales\Eshop\Application\Controller\Admin\Li
     protected function addFilter($sQ)
     {
         $sArtTable = $this->_getViewName('oxarticles');
-        $sQ = parent::addFilter($sQ);
+        $sQ = parent::_addFilter($sQ);
 
         // display variants or not ?
         if (!$this->getConfig()->getConfigParam('blVariantsSelection')) {

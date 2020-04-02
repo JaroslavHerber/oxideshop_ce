@@ -120,7 +120,7 @@ class ActionsMainAjax extends \OxidEsales\Eshop\Application\Controller\Admin\Lis
      */
     protected function addFilter($sQ)
     {
-        $sQ = parent::addFilter($sQ);
+        $sQ = parent::_addFilter($sQ);
 
         // display variants or not ?
         if ($this->getConfig()->getConfigParam('blVariantsSelection')) {
@@ -155,7 +155,7 @@ class ActionsMainAjax extends \OxidEsales\Eshop\Application\Controller\Admin\Lis
             return 'order by oxactions2article.oxsort ';
         }
 
-        return parent::getSorting();
+        return parent::_getSorting();
     }
 
     /**
@@ -169,7 +169,7 @@ class ActionsMainAjax extends \OxidEsales\Eshop\Application\Controller\Admin\Lis
         $this->_getOxRssFeed()->removeCacheFile($sOxid);
 
         if (\OxidEsales\Eshop\Core\Registry::getConfig()->getRequestParameter('all')) {
-            $sQ = parent::addFilter("delete oxactions2article.* " . $this->_getQuery());
+            $sQ = parent::_addFilter("delete oxactions2article.* " . $this->_getQuery());
             \OxidEsales\Eshop\Core\DatabaseProvider::getDb()->Execute($sQ);
         } elseif (is_array($aChosenArt)) {
             $sChosenArticles = implode(", ", \OxidEsales\Eshop\Core\DatabaseProvider::getDb()->quoteArray($aChosenArt));

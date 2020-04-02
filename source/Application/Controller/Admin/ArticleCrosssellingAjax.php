@@ -152,7 +152,7 @@ class ArticleCrosssellingAjax extends \OxidEsales\Eshop\Application\Controller\A
         // adding
         if (\OxidEsales\Eshop\Core\Registry::getConfig()->getRequestParameter('all')) {
             $sArtTable = $this->_getViewName('oxarticles');
-            $aChosenArt = $this->_getAll(parent::addFilter("select $sArtTable.oxid " . $this->_getQuery()));
+            $aChosenArt = $this->_getAll(parent::_addFilter("select $sArtTable.oxid " . $this->_getQuery()));
         }
 
         $oArticle = oxNew(\OxidEsales\Eshop\Application\Model\Article::class);

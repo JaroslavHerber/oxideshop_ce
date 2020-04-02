@@ -679,7 +679,7 @@ class ArticleListController extends \OxidEsales\Eshop\Application\Controller\Fro
             }
         }
 
-        $keywords = parent::prepareMetaDescription($keywords, -1, $removeDuplicatedWords);
+        $keywords = parent::_prepareMetaDescription($keywords, -1, $removeDuplicatedWords);
 
         return trim($keywords);
     }
@@ -738,7 +738,7 @@ class ArticleListController extends \OxidEsales\Eshop\Application\Controller\Fro
             $text = "{$keywords}, {$text}";
         }
 
-        return parent::prepareMetaKeyword($text);
+        return parent::_prepareMetaKeyword($text);
     }
 
     /**
@@ -784,7 +784,7 @@ class ArticleListController extends \OxidEsales\Eshop\Application\Controller\Fro
                 $url = $category->getBaseSeoLink($languageId, $currentPage);
             }
         } else {
-            $url = parent::addPageNrParam($url, $currentPage, $languageId);
+            $url = parent::_addPageNrParam($url, $currentPage, $languageId);
         }
 
         return $url;

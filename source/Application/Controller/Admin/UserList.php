@@ -108,7 +108,7 @@ class UserList extends \OxidEsales\Eshop\Application\Controller\Admin\AdminListC
 
             unset($whereQuery['oxuser.oxlname']);
         }
-        $query = parent::prepareWhereQuery($whereQuery, $fullQuery);
+        $query = parent::_prepareWhereQuery($whereQuery, $fullQuery);
 
         if ($nameWhere) {
             $values = explode(' ', $name);
