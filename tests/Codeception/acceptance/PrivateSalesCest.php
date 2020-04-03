@@ -50,6 +50,7 @@ class PrivateSalesCest
         $I->dontSee(Translator::translate('INVITE_YOUR_FRIENDS'), $invitationPage->headerTitle);
         $breadCrumb = Translator::translate('INVITE_YOUR_FRIENDS');
         $invitationPage->seeOnBreadCrumb($breadCrumb);
+        $I->deleteFromDatabase('oxacceptedterms', ['oxuserid' => 'testuser']);
     }
 
     /**
@@ -73,7 +74,6 @@ class PrivateSalesCest
         $I->amOnPage($privateSalesLoginPage->URL);
 
         $I->dontSee(Translator::translate('HOME'));
-        $I->dontSee(Translator::translate('START_BARGAIN_HEADER'));
 
         //forgot password functionality
         $passwordReminderPage = $privateSalesLoginPage->openUserPasswordReminderPage();
@@ -114,6 +114,7 @@ class PrivateSalesCest
         $registrationPage->enterUserLoginData($userLoginDataToFill)
             ->registerUser();
         $I->see(Translator::translate('MESSAGE_CONFIRMING_REGISTRATION'));
+        $I->deleteFromDatabase('oxacceptedterms', ['oxuserid' => 'testuser']);
     }
 
     /**

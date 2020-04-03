@@ -140,7 +140,7 @@ class UserAccountCest
         $I->see(Translator::translate('PLEASE_SELECT_STATE'), $userAddressPage->billStateId);
 
         //change user password
-        $userAddressPage = $userAddressPage->changeEmail("example01@oxid-esales.dev", $userData['userPassword']);
+        $userAddressPage = $userAddressPage->changeEmail("example02@oxid-esales.dev", $userData['userPassword']);
 
         $I->dontSee(Translator::translate('COMPLETE_MARKED_FIELDS'));
         $userAddressPage = $userAddressPage->logoutUser();
@@ -150,7 +150,7 @@ class UserAccountCest
         $I->see(Translator::translate('LOGIN'));
         $I->see(Translator::translate('ERROR_MESSAGE_USER_NOVALIDLOGIN'), $userAddressPage->badLoginError);
         //login with new email address
-        $userAddressPage->loginUser('example01@oxid-esales.dev', $userData['userPassword']);
+        $userAddressPage->loginUser('example02@oxid-esales.dev', $userData['userPassword']);
         $I->dontSee(Translator::translate('LOGIN'));
 
         //change password back to original
@@ -198,6 +198,8 @@ class UserAccountCest
         $start = new Start($I);
         $I->wantToTest('user billing address in my account');
 
+        $I->updateConfigInDatabase('blShowBirthdayFields', true, 'bool');
+        $I->updateConfigInDatabase('blVatIdCheckDisabled', true, 'bool');
         /** Change Germany and Belgium to non EU country to skip online VAT validation. */
         $I->updateInDatabase('oxcountry', ["oxvatstatus" => 0], ["OXID" => 'a7c40f632e04633c9.47194042']);
         $I->updateInDatabase('oxcountry', ["oxvatstatus" => 0], ["OXID" => 'a7c40f631fc920687.20179984']);
@@ -230,7 +232,6 @@ class UserAccountCest
             ->selectBillingCountry('Germany')
             ->saveAddress();
         $I->see('Germany', $userAddressPage->billingAddress);
-
     }
 
     /**
@@ -276,7 +277,9 @@ class UserAccountCest
             ->enterShippingAddressData($deliveryAddressData)
             ->saveAddress()
             ->validateUserDeliveryAddress($deliveryAddressData, 1);
+        $I->deleteFromDatabase('oxaddress', ['OXUSERID' => $userData['userId']]);
     }
+
 
     private function getExistingUserData()
     {
@@ -290,7 +293,7 @@ class UserAccountCest
             "userMobFonField" => "111-111111-$userId",  //still needed?
             "userPrivateFonField" => "11111111$userId",
             "userBirthDateDayField" => rand(10, 28),
-            "userBirthDateMonthField" => rand(10, 12),
+            "userBirthDateMonthField" => rand(8, 10),
             "userBirthDateYearField" => rand(1960, 2000),
         ];
         return $userData;
@@ -328,5 +331,7 @@ class UserAccountCest
         /** Change Germany and Belgium data to original. */
         $I->updateInDatabase('oxcountry', ["oxvatstatus" => 1], ["OXID" => 'a7c40f632e04633c9.47194042']);
         $I->updateInDatabase('oxcountry', ["oxvatstatus" => 1], ["OXID" => 'a7c40f631fc920687.20179984']);
+        $userData = $this->getExistingUserData();
+        $I->deleteFromDatabase('oxaddress', ['OXUSERID' => $userData['userId']]);
     }
 }
